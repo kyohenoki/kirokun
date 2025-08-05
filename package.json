@@ -10,6 +10,12 @@
     "preview": "next build && next start"
   },
   "dependencies": {
+    "@lexical/code": "^0.33.1",
+    "@lexical/list": "^0.33.1",
+    "@lexical/markdown": "^0.33.1",
+    "@lexical/react": "^0.33.1",
+    "@lexical/rich-text": "^0.33.1",
+    "lexical": "^0.33.1",
     "next": "^15.4.5",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"

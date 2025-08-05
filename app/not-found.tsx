@@ -1,5 +1,6 @@
-import Maru from "@/app/katachi/maru"
 import { Metadata } from "next"
+
+import Maru from "@/app/katachi/maru"
 
 export const metadata: Metadata = {
   title: "何もない",
