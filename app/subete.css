@@ -1,7 +1,12 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   font-family: "SF Safari", "SF Pro", "Hiragino Sans", "Inter", "Noto Sans JP", system-ui, sans-serif;
+  --background: #fafafa;
+  --mozi: #181818;
+  --ao: #265da5;
+  --bunsho: #5a5a5a;
 }
 
 @font-face {
@@ -11,6 +16,6 @@
 }
 
 html {
-  background-color: #fafafa;
-  color: #181818;
+  background-color: var(--background);
+  color: var(--mozi);
 }

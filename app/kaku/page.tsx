@@ -1,22 +1,34 @@
 import { Metadata } from "next"
 
-import Maru from "@/app/katachi/maru"
-import Editor from "@/app/katachi/kaku"
+import { Susumenu } from "@/app/katachi/susumu"
+import Tameshigaki from "@/app/katachi/tameshigaki"
+
+// import Maru from "@/app/katachi/maru"
+// import Editor from "@/app/katachi/kaku"
 
 export const metadata: Metadata = {
   title: "記録を書く",
-  description: "ここからどんどん書き始める"
+  description: "この一行から書き始まる"
 }
 
 export default function Page() {
   return (
-    <main className="p-5">
-      <div className="flex items-center mb-1">
-        <Maru/>
-        <h1 className="text-2xl font-medium pl-2">記録を書く</h1>
+    <main className="px-5 py-4 w-full flex flex-col justify-center items-center">
+      <div className="max-w-2xl w-full">
+        <Susumenu/>
+        <Tameshigaki/>
       </div>
-      <h2 className="text-[1.35rem] text-neutral-600">ここからどんどん書き始める</h2>
-      <Editor/>
     </main>
   )
 }
+
+/*
+
+    <main className="p-5">
+      <Susumenu/>
+      <h2 className="text-[1.2rem] text-neutral-600">この一行から書き始まる</h2>
+      <div className="pt-1 pb-2">
+        <Editor/>
+      </div>
+    </main>
+*/

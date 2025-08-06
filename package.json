@@ -6,7 +6,6 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "preview": "next build && next start"
   },
   "dependencies": {
@@ -16,6 +15,7 @@
     "@lexical/markdown": "^0.33.1",
     "@lexical/react": "^0.33.1",
     "@lexical/rich-text": "^0.33.1",
+    "@lexical/table": "^0.33.1",
     "lexical": "^0.33.1",
     "next": "^15.4.5",
     "react": "^19.1.1",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^24.2.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",

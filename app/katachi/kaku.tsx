@@ -9,52 +9,54 @@ import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPl
 import { ListPlugin } from "@lexical/react/LexicalListPlugin"
 import { TRANSFORMERS } from "@lexical/markdown"
 
+import type { InitialConfigType } from "@lexical/react/LexicalComposer"
+
 import { HeadingNode, QuoteNode } from "@lexical/rich-text"
 import { ListNode, ListItemNode } from "@lexical/list"
-import { CodeNode } from "@lexical/code"
-import { LinkNode } from "@lexical/link"
+import { CodeNode, CodeHighlightNode } from "@lexical/code"
+import { LinkNode, AutoLinkNode } from "@lexical/link"
+import { TableNode, TableCellNode, TableRowNode } from "@lexical/table"
+
+import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode"
 
 const theme = {
   // mitame no theme
-  paragraph: 'mb-5',
-  heading: {
-    h1: 'text-2xl font-bold',
-    h2: 'text-xl font-semibold',
-    h3: 'text-lg font-semibold',
-  },
-  list: {
-    ul: 'list-disc ml-6',
-    ol: 'list-decimal ml-6',
-    listitem: 'mb-1',
-  },
-  quote: 'border-l-4 pl-4 italic text-gray-600 border-gray-300',
-  code: 'bg-gray-100 text-sm px-1 py-0.5 font-mono rounded',
 }
 
 export default function Editor() {
-  const initialConfig = {
+  const initialConfig: InitialConfigType = {
     namespace: "Editor",
     onError(error: Error) {
       console.error(error)
     },
-    nodes: [HeadingNode, QuoteNode, ListNode, ListItemNode, CodeNode, LinkNode],
+    nodes: [
+      HeadingNode,
+      QuoteNode,
+      ListNode,
+      ListItemNode,
+      CodeNode,
+      CodeHighlightNode,
+      LinkNode,
+      AutoLinkNode,
+      TableNode,
+      TableCellNode,
+      TableRowNode,
+      HorizontalRuleNode
+    ],
     theme: theme
   }
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <RichTextPlugin
-        contentEditable={
-          <ContentEditable
-            className="outline-none"
-            aria-placeholder={"ここからどんどん書き始める"}
-            placeholder={<div className="">ここからどんどん書き始める</div>}
-          />
-        }
-        ErrorBoundary={LexicalErrorBoundary}
-      />
-      <HistoryPlugin/>
-      <ListPlugin/>
-      <MarkdownShortcutPlugin transformers={TRANSFORMERS}/>
+      <div className="relative prose text-[var(--bunsho)]">
+        <RichTextPlugin
+          contentEditable={<ContentEditable className="outline-none"/>}
+          placeholder={<div className="absolute top-0 text-neutral-400 pointer-events-none">ここからどんどん書き始める</div>}
+          ErrorBoundary={LexicalErrorBoundary}
+        />
+        <HistoryPlugin/>
+        <ListPlugin/>
+        <MarkdownShortcutPlugin transformers={TRANSFORMERS}/>
+      </div>
     </LexicalComposer>
   )
 }
