@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { forwardRef, useEffect, useRef } from "react"
 import { LexicalComposer, InitialConfigType } from "@lexical/react/LexicalComposer"
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
 import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin"
@@ -11,15 +11,10 @@ import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin"
 import { EditorThemeClasses, INSERT_LINE_BREAK_COMMAND } from "lexical"
 
 export default function Tameshigaki() {
-  const bodyref = useRef<HTMLDivElement>(null)
   return (
-    <div className="flex flex-col gap-0.5">
-      <Title
-        onEnter={() => {
-          bodyref.current?.focus()
-        }}
-      />
-      <Bunsho ref={bodyref}/>
+    <div className="flex flex-col gap-0.5">      
+      <Title/>
+      <Bunsho/>
     </div>
   )
 }
@@ -30,7 +25,7 @@ const titletheme: EditorThemeClasses = {
   paragraph: "text-[1.5rem] font-medium"
 }
 
-function Title({ onEnter }: { onEnter: () => void }) {
+function Title() {
   const titleconfig: InitialConfigType = {
     namespace: "Title",
     theme: titletheme,
@@ -38,16 +33,6 @@ function Title({ onEnter }: { onEnter: () => void }) {
       console.error(error)
     }
   }
-  const [editor] = useLexicalComposerContext()
-  useEffect(() => {
-    return editor.registerCommand(
-      INSERT_LINE_BREAK_COMMAND,
-      () => {
-        onEnter()
-        return true
-      }, 0
-    )
-  }, [editor, onEnter])
   return (
     <LexicalComposer initialConfig={titleconfig}>
       <div className="relative text-[var(--bunsho)]">
@@ -69,7 +54,7 @@ const bunshotheme: EditorThemeClasses = {
 
 // Bunshoのほうは後でMarkdownで入力できるようにする
 
-function Bunsho({ref}) {
+function Bunsho() {
   const bunshoconfig: InitialConfigType = {
     namespace: "Bunsho",
     theme: bunshotheme,
@@ -84,7 +69,7 @@ function Bunsho({ref}) {
           contentEditable={<ContentEditable className="outline-none"/>}
           placeholder={<div className="absolute top-0 text-[1.15rem] text-[var(--bunsho)]/40 pointer-events-none">この一行から書き始まる</div>}
           ErrorBoundary={LexicalErrorBoundary}
-        />
+          />
         <HistoryPlugin/>
       </div>
     </LexicalComposer>

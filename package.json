@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "preview": "next build && next start"
+    "preview": "next build && next start",
+    "deploy": "vercel --prod"
   },
   "dependencies": {
     "@lexical/code": "^0.33.1",
